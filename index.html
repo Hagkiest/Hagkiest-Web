@@ -154,7 +154,7 @@
           <h2 class="h2 article-title">关于我</h2>
         </header>
         <style>
-          .cookie-consent {
+          .cookie-consent, .no-cookies-info {
             position: fixed;
             bottom: 0;
             left: 0;
@@ -166,7 +166,7 @@
             display: none; /* 默认隐藏 */
             z-index: 1000; /* 确保弹窗在最上层 */
         }
-        .cookie-consent button {
+        .cookie-consent button, .no-cookies-info button {
             background-color: #4CAF50;
             border: none;
             color: white;
@@ -179,7 +179,7 @@
             cursor: pointer;
             border-radius: 5px; /* 圆角按钮 */
         }
-        .cookie-consent button:hover {
+        .cookie-consent button:hover, .no-cookies-info button:hover {
             background-color: #45a049;
         }
         .cookie-consent .deny-button {
@@ -187,6 +187,14 @@
         }
         .cookie-consent .deny-button:hover {
             background-color: #e53935;
+        }
+        .no-cookies-info {
+            background-color: #f44336; /* 不同意的弹窗背景颜色 */
+            color: #fff; /* 文字颜色 */
+        }
+        .no-cookies-info p {
+            margin: 0; /* 去除段落的外边距 */
+            padding: 10px; /* 添加内边距 */
         }
         a {
   color: rgb(255, 209, 58); /* 默认文本颜色 */
@@ -220,10 +228,16 @@ a:visited {
           </a>
       </section>
   
+      <!-- Cookie 同意提示框 -->
       <div class="cookie-consent" id="cookie-consent">
-          我们使用 Cookie 来提升用户体验。请点击“同意”来接受我们的 Cookie 使用政策。
+          我们使用 Cookie 🍪来提升用户体验。请点击“同意”来接受我们的 Cookie 🍪使用政策。
           <button id="accept-cookies">同意</button>
           <button id="deny-cookies" class="deny-button">不同意</button>
+      </div>
+  
+      <!-- 不使用 Cookie 的提示框 -->
+      <div class="no-cookies-info" id="no-cookies-info">
+          <p>由于您选择不使用 Cookies🍪，您可能无法体验到我们网站的所有功能。使用Cookie🍪能保存登录状态和个人设置，提升用户体验和网站功能。不使用Cookie🍪则需频繁重新登录，无法享受个性化服务,并且可以看到更多的广告。如果您改变主意，可以通过浏览器设置或刷新页面重新启用 Cookies🍪。</p>
       </div>
   
       <script>
@@ -249,10 +263,13 @@ a:visited {
   
           // 检查用户是否同意使用 Cookies
           function checkCookieConsent() {
-              // 每次访问时都显示提示框
-              document.getElementById('cookie-consent').style.display = 'block';
-              // 隐藏其他功能初始化
-              initializePage();
+              const consent = getCookie('cookieConsent');
+              if (consent === 'true') {
+                  initializePage();
+              } else {
+                  // 每次访问时显示提示框
+                  document.getElementById('cookie-consent').style.display = 'block';
+              }
           }
   
           // 初始化页面功能（如设置 Cookie）
@@ -278,7 +295,7 @@ a:visited {
           // 用户不同意 Cookie 使用
           document.getElementById('deny-cookies').addEventListener('click', function () {
               document.getElementById('cookie-consent').style.display = 'none';
-              // 这里可以选择是否清理已经设置的 cookie，具体取决于业务逻辑
+              document.getElementById('no-cookies-info').style.display = 'block';
           });
   
           // 页面加载时检查 Cookie 同意状态
