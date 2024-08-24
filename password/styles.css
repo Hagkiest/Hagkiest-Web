@@ -1,0 +1,198 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('path/to/your/custom-font.woff2') format('woff2'),
+         url('path/to/your/custom-font.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    margin: 50px 0;
+}
+
+.header h1 {
+    font-family: 'CustomFont', sans-serif;
+    font-size: 3em;
+    margin: 0;
+    color: #333;
+}
+
+.header p {
+    font-size: 1.2em;
+    color: #666;
+    margin: 10px 0 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    background-color: #ffffff; /* 设置背景为纯白色 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.广告 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    background-color: #ffffff; /* 设置背景为纯白色 */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.output-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.password-output {
+    padding: 15px;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 350px;
+    text-align: center;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.strength-indicator {
+    padding: 15px 30px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #e0e0e0;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.copy-btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2196F3;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.copy-btn:hover {
+    background-color: #1976d2;
+}
+
+.length-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.length-label {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.length-slider {
+    -webkit-appearance: none;
+    width: 400px; /* 增加拖动条的长度 */
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.length-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 2px solid #2196F3;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.length-slider::-moz-range-thumb {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 2px solid #2196F3;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.adjust-btn {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    font-size: 2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adjust-btn:hover {
+    background-color: #ddd;
+}
+
+.length-value {
+    font-size: 1.5em;
+}
+
+.character-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.options-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    width: 100%;
+}
+
+.character-options label {
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.generate-btn {
+    margin-top: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background-color: #45a049;
+}

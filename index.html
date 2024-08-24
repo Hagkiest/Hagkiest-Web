@@ -153,17 +153,124 @@
         <header>
           <h2 class="h2 article-title">关于我</h2>
         </header>
-
+        <style>
+          .cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            display: none; /* 默认隐藏 */
+            z-index: 1000; /* 确保弹窗在最上层 */
+        }
+        .cookie-consent button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px; /* 圆角按钮 */
+        }
+        .cookie-consent button:hover {
+            background-color: #45a049;
+        }
+        .cookie-consent .deny-button {
+            background-color: #f44336;
+        }
+        .cookie-consent .deny-button:hover {
+            background-color: #e53935;
+        }
+          
+          
+      </style>
         <section class="about-text">
           <p>
-           我们摸着石头过河，我也希望成为一块石头，愿意当好一块石头，让别人摸着我们过去
+              我们摸着石头过河，我也希望成为一块石头，愿意当好一块石头，让别人摸着我们过去
           </p>
-
           <p>
-           我会Python、C/C++等5种编程语言，擅长UI设计、前端开发等。偶尔会在技术论坛(如CSDN、知乎)等平台发表一些技术文章，也会在GitHub上分享一些自己的项目。
+              我会Python、C/C++等5种编程语言，擅长UI设计、前端开发等。偶尔会在技术论坛(如CSDN、知乎)等平台发表一些技术文章，也会在GitHub上分享一些自己的项目。
           </p>
-          <p>我的网站：auto.hagkiest.us.kg（下载站）、hagkiest.top（个人主页）、password.hagkiest.top（密码生成器）等等</p>
-        </section>
+          <p>我的网站：<br>
+              <a href="http://auto.hagkiest.us.kg" target="_blank" rel="noopener noreferrer">auto.hagkiest.us.kg（下载站）</a><br>
+              <a href="http://hagkiest.top" target="_blank" rel="noopener noreferrer">hagkiest.top（个人主页）</a>
+          </p>
+          <a id="password-link" href="./password/index.html" target="_blank" rel="noopener noreferrer">
+              <p>password.hagkiest.top（密码生成器）</p>
+          </a>
+      </section>
+  
+      <div class="cookie-consent" id="cookie-consent">
+          我们使用 Cookie 来提升用户体验。请点击“同意”来接受我们的 Cookie 使用政策。
+          <button id="accept-cookies">同意</button>
+          <button id="deny-cookies" class="deny-button">不同意</button>
+      </div>
+  
+      <script>
+          // 设置 cookie
+          function setCookie(name, value, days) {
+              const d = new Date();
+              d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+              let expires = "expires=" + d.toUTCString();
+              document.cookie = name + "=" + (value || "") + ";" + expires + ";path=/";
+          }
+  
+          // 获取 cookie
+          function getCookie(name) {
+              let nameEQ = name + "=";
+              let ca = document.cookie.split(';');
+              for (let i = 0; i < ca.length; i++) {
+                  let c = ca[i];
+                  while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                  if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+              }
+              return null;
+          }
+  
+          // 检查用户是否同意使用 Cookies
+          function checkCookieConsent() {
+              // 每次访问时都显示提示框
+              document.getElementById('cookie-consent').style.display = 'block';
+              // 隐藏其他功能初始化
+              initializePage();
+          }
+  
+          // 初始化页面功能（如设置 Cookie）
+          function initializePage() {
+              const visited = getCookie('visitedPasswordLink');
+              if (visited === 'true') {
+                  document.getElementById('password-link').innerHTML = '<p>password.hagkiest.top（密码生成器）（曾访问过）</p>';
+              }
+  
+              // 当用户点击链接时，记录访问状态
+              document.getElementById('password-link').addEventListener('click', function () {
+                  setCookie('visitedPasswordLink', 'true', 365);
+              });
+          }
+  
+          // 用户同意 Cookie 使用
+          document.getElementById('accept-cookies').addEventListener('click', function () {
+              setCookie('cookieConsent', 'true', 365); // 记录用户同意状态，并在 365 天后过期
+              document.getElementById('cookie-consent').style.display = 'none';
+              initializePage();
+          });
+  
+          // 用户不同意 Cookie 使用
+          document.getElementById('deny-cookies').addEventListener('click', function () {
+              document.getElementById('cookie-consent').style.display = 'none';
+              // 这里可以选择是否清理已经设置的 cookie，具体取决于业务逻辑
+          });
+  
+          // 页面加载时检查 Cookie 同意状态
+          window.onload = checkCookieConsent;
+      </script>
 
 
         <!--

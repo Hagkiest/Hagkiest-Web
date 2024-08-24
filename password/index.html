@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="360-site-verification" content="3a964a62fd3929ea0e1c732e4229aefd" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码生成器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>密码生成器</h1>
+        <p>你的信息安全保护助手</p>
+    </div>
+
+    <div class="container">
+        <div id="popup" class="popup">  
+            <div class="popup-content">  
+                
+                <script src="script.js"></script> 
+                <h2>安全提示</h2>  
+                <p>密码尽量要包含大小写字母、数字、符号和下划线</p>  
+                <p>不要将账号提供给他人（利用账号可以暴力破解密码）</p>  
+                  
+            </div>  
+        </div>
+        <div class="output-container">
+            <input type="text" id="password-output" class="password-output" readonly>
+            <div class="controls">
+                <div id="strength-indicator" class="strength-indicator">无</div>
+                <button class="copy-btn" id="copy-btn">复制</button>
+            </div>
+        </div>
+
+        <div class="length-control">
+            <span class="length-label">密码长度</span>
+            <button id="decrease-btn" class="adjust-btn">-</button>
+            <input type="range" id="length-slider" class="length-slider" min="3" max="20" value="12">
+            <span id="length-value" class="length-value">12</span>
+            <button id="increase-btn" class="adjust-btn">+</button>
+        </div>
+
+        <div class="character-options">
+            <p class="options-label">使用的字符</p>
+            <label><input type="checkbox" id="uppercase"> ABC</label>
+            <label><input type="checkbox" id="lowercase"> abc</label>
+            <label><input type="checkbox" id="numbers"> 123</label>
+            <label><input type="checkbox" id="special"> #$%</label>
+        </div>
+
+        <button id="generate-btn" class="generate-btn">生成密码</button>
+        <h1></h1>
+        <h10><br>服务器：hagkiest.github.com 域名为自购hagkiest.top SSL证书与DNS来自Cloudflare</h10>
+    </div>
+    
+    <h1>💬通知💬</h1>
+    <div class="广告">
+    <a href="hagkiest.top"><h2>新域名</h2></a>
+    
+    <h4>我们在2024年8月23日更改了网站域名，如需继续访问，请收藏hagkiest.top⬇️⬇️⬇️（Hagkiest的个人主页）</h4>
+    <h4><br>✅❤️⬇️收藏网页，以防丢失⬇️❤️✅</b>。</h4>
+    <iframe width="1000" height="500" border="0" src="https://Hagkiest.top" frameborder="0"></iframe>
+    
+
+    </div>
+    <script>
+        const lengthSlider = document.getElementById('length-slider');
+        const lengthValue = document.getElementById('length-value');
+        const decreaseBtn = document.getElementById('decrease-btn');
+        const increaseBtn = document.getElementById('increase-btn');
+        const strengthIndicator = document.getElementById('strength-indicator');
+        const passwordOutput = document.getElementById('password-output');
+        const generateBtn = document.getElementById('generate-btn');
+        const copyBtn = document.getElementById('copy-btn');
+
+        function updateStrengthIndicator(length) {
+            if (length < 5) {
+                strengthIndicator.textContent = '很弱';
+                strengthIndicator.style.backgroundColor = '#ffcccc'; // 浅红色
+            } else if (length >= 5 && length < 9) {
+                strengthIndicator.textContent = '弱';
+                strengthIndicator.style.backgroundColor = '#ff9999'; // 红色
+            } else if (length >= 9 && length < 11) {
+                strengthIndicator.textContent = '良好';
+                strengthIndicator.style.backgroundColor = '#ffcc99'; // 肉色
+            } else if (length >= 11 && length < 15) {
+                strengthIndicator.textContent = '强';
+                strengthIndicator.style.backgroundColor = '#99ff99'; // 绿色
+            } else if (length >= 15) {
+                strengthIndicator.textContent = '很强';
+                strengthIndicator.style.backgroundColor = '#66ff66'; // 更亮的绿色
+            }
+            strengthIndicator.style.color = '#333';
+        }
+
+        function generatePassword(length, options) {
+            const upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const lowerChars = 'abcdefghijklmnopqrstuvwxyz';
+            const numberChars = '0123456789';
+            const specialChars = "~!@#$%^&*()_+-=[]\/;',./<>?:\"·";
+
+            let charPool = '';
+            if (options.uppercase) charPool += upperChars;
+            if (options.lowercase) charPool += lowerChars;
+            if (options.numbers) charPool += numberChars;
+            if (options.special) charPool += specialChars;
+
+            if (charPool.length === 0) return ''; // 如果没有选择任何字符集
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charPool.length);
+                password += charPool[randomIndex];
+            }
+
+            return password;
+        }
+
+        function animatePasswordGeneration() {
+            const length = lengthSlider.value;
+            lengthValue.textContent = length;
+            updateStrengthIndicator(length);
+
+            const options = {
+                uppercase: document.getElementById('uppercase').checked,
+                lowercase: document.getElementById('lowercase').checked,
+                numbers: document.getElementById('numbers').checked,
+                special: document.getElementById('special').checked
+            };
+
+            let iterations = 0;
+            const maxIterations = 80;
+            const interval = 10; // 10 毫秒
+            let currentPassword = '';
+
+            const animationInterval = setInterval(() => {
+                if (iterations >= maxIterations) {
+                    clearInterval(animationInterval);
+                    return;
+                }
+
+                const tempPassword = generatePassword(length, options);
+                currentPassword = tempPassword;
+                passwordOutput.value = currentPassword;
+
+                iterations++;
+            }, interval);
+        }
+
+        lengthSlider.addEventListener('input', animatePasswordGeneration);
+        decreaseBtn.addEventListener('click', () => {
+            if (lengthSlider.value > 3) {
+                lengthSlider.value--;
+                animatePasswordGeneration();
+            }
+        });
+
+        increaseBtn.addEventListener('click', () => {
+            if (lengthSlider.value < 20) {
+                lengthSlider.value++;
+                animatePasswordGeneration();
+            }
+        });
+
+        generateBtn.addEventListener('click', animatePasswordGeneration);
+
+        copyBtn.addEventListener('click', () => {
+            passwordOutput.select();
+            document.execCommand('copy');
+        });
+    </script>
+    
+</body>
+</html>
