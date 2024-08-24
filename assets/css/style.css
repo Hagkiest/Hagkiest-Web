@@ -7,20 +7,7 @@
  * copyright 2022 @codewithsadee
  */
 
- a {
-  color: rgb(122, 180, 255); /* 默认文本颜色 */
-  text-decoration: none; /* 去掉下划线 */
-}
-
-/* 设置鼠标悬停时的颜色 */
-a:hover {
-  color: rgb(122, 180, 255); /* 鼠标悬停时的文本颜色 */
-}
-
-/* 设置访问过后的链接颜色 */
-a:visited {
-  color: rgb(255, 209, 58); /* 已访问的链接颜色 */
-}
+ 
 
 
 
