@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css 输入框动效</title>
+    <style>
+        .inputBox {
+            position: relative;
+            width: 250px;
+        }
+ 
+        .inputBox input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 1em;
+            outline: none;
+        }
+ 
+        .inputBox span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: 10px;
+            font-size: 1em;
+            pointer-events: none;
+            color: #cccccc;
+        }
+ 
+        .inputBox input:valid ~ span,
+        .inputBox input:focus ~ span {
+            color: orangered;
+            transform: translateX(10px) translateY(-7px);
+            font-size: 0.65em;
+            padding: 0 10px;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<div class="inputBox">
+    <input type="text" required/>
+    <span>用户名</span>
+</div>
+</body>
+</html>

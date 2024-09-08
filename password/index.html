@@ -11,6 +11,69 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <aside class="sidebar" data-sidebar>
+        <div class="web_notice">
+          <div>
+              <h3>网站通知</h3>
+              <div style="text-align:center;color:#000;">由于二级域名限制，所有Hagkiest归属的网站均已转移，请前往Hagkiest的个人主页（hagkiest.top）查看最新内容！（收藏网站谨防丢失）</div>
+              <a onclick="javascript:document.querySelector('.web_notice').remove()" style="color:#ffffff;">我知道了</a>
+          </div>
+      </div>
+       
+      <style>
+      .web_notice {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.3);
+          z-index: 99999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+      }
+       
+      .web_notice > div {
+          width: 550px;
+          background: #FFF;
+          border-radius: 40px;
+          padding: 50px 40px;
+      }
+       
+      .web_notice h3 {
+          font-weight: bold;
+          text-align: center;
+          font-size: 30px;
+      }
+       
+      .web_notice div {
+          font-size: 16px;
+          margin-top: 26px;
+          line-height: 30px;
+          color: #999;
+      }
+       
+      .web_notice a {
+          display: block;
+          background: #98a3ff;
+          color: #FFF;
+          text-align: center;
+          font-weight: bold;
+          font-size: 19px;
+          line-height: 60px;
+          margin: 0 auto;
+          margin-top: 45px;
+          border-radius: 32px;
+          width: 80%;
+      }
+       
+      @media (max-width: 768px) {
+          .web_notice > div {
+              width: 80%;
+          }
+      }
+      </style>
     <div class="header">
         <h1>密码生成器</h1>
         <p>你的信息安全保护助手</p>
@@ -34,7 +97,7 @@
                 <button class="copy-btn" id="copy-btn">复制</button>
             </div>
         </div>
-
+        
         <div class="length-control">
             <span class="length-label">密码长度</span>
             <button id="decrease-btn" class="adjust-btn">-</button>
