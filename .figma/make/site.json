@@ -1,0 +1,10 @@
+{
+  "description": "Explore Hagkiest’s personal portfolio, programming journey, and creative projects, with links to GitHub and community work.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
